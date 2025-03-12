@@ -2,19 +2,32 @@ package telegraph.components;
 
 import telegraph.interfaces.SignalComponent;
 
-public class Cable implements SignalComponent {
+public class Cable{
 
     private int lengthKm;
-    private double signalStrength = 1.0;
+    private double signalLossPerKm;
+    private Relay relay;
+    private Receiver receiver;
 
-    public Cable(int lengthKm) {
+    public Cable(int lengthKm, double signalLossPerKm) {
         this.lengthKm = lengthKm;
+        this.signalLossPerKm = signalLossPerKm;
     }
 
-    @Override
-    public String processSignal(String signal) {
-        double degradation = 0.1 * lengthKm;
-        signalStrength -= degradation;
-        return (signalStrength > 0.2) ? signal : "WEAK_SIGNAL"; // Señal demasiado débil
+    public void connectRelay(Relay relay) { this.relay = relay; }
+    public void connectReceiver(Receiver receiver) { this.receiver = receiver; }
+
+    public void transmit(String signal) {
+        double signalStrength = 100.0 - (lengthKm * signalLossPerKm);
+        System.out.println("Cable transmitiendo... Fuerza de la señal: " + signalStrength);
+
+        if (signalStrength < 30 && relay != null) {
+            System.out.println("Señal débil, activando el relé...");
+            relay.amplifySignal(signal, receiver);
+        } else if (signalStrength >= 30 && receiver != null) {
+            receiver.receiveSignal(signal);
+        } else {
+            System.out.println("La señal se ha perdido por completo.");
+        }
     }
 }

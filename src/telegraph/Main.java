@@ -13,15 +13,7 @@ import java.util.*;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        Transmitter transmitter = new Transmitter(true);
-        Cable cable1 = new Cable(50);
-        Relay relay = new Relay(true);
-        Cable cable2 = new Cable(50);
-        Receiver receiver = new Receiver();
-
-        List<SignalComponent> components = Arrays.asList(cable1, relay, cable2);
-        TelegraphSystem system = new TelegraphSystem(transmitter, components, receiver);
-
-        system.run("HOLA");
+        TelegraphSystem system = new TelegraphSystem();
+        system.run("SOS"); // Enviar SOS en Morse
     }
 }

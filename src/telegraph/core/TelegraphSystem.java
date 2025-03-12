@@ -10,28 +10,21 @@ import java.util.List;
 
 public class TelegraphSystem {
     private Transmitter transmitter;
-    private List<SignalComponent> components;
+    private Cable cable;
+    private Relay relay;
     private Receiver receiver;
 
-    public TelegraphSystem(Transmitter transmitter, List<SignalComponent> components, Receiver receiver) {
-        this.transmitter = transmitter;
-        this.components = components;
-        this.receiver = receiver;
+    public TelegraphSystem() {
+        transmitter = new Transmitter(true);
+        cable = new Cable(50, 1.5); // 50 km con 1.5% de pérdida por km
+        relay = new Relay(true);
+        receiver = new Receiver();
+
+        cable.connectRelay(relay);
+        cable.connectReceiver(receiver);
     }
 
-    public void run(String message) {
-        try {
-            String signal = transmitter.sendSignal(message);
-            for (SignalComponent component : components) {
-                if (signal.isEmpty()) {
-                    throw new Exception("¡Fallo en la transmisión! La señal se perdió.");
-                }
-                signal = component.processSignal(signal);
-            }
-            receiver.receiveSignal(signal);
-            receiver.displayMessage();
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
+    public void run(String mensaje) {
+        transmitter.sendSignal(mensaje, cable);
     }
 }
