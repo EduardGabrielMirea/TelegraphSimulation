@@ -18,7 +18,7 @@ public class MorseCode {
             Map.entry('7', "--..."), Map.entry('8', "---.."), Map.entry('9', "----."),
             Map.entry('?', "..--.."), Map.entry('!', "-.-.--"), Map.entry('+', ".-.-."),
             Map.entry('-', "..--.-"), Map.entry('$', "...-..-"), Map.entry('.', ".-.-.-"),
-            Map.entry('=', "-...-")
+            Map.entry('=', "-...-"),Map.entry('_', "..---.")
             );
 
     // Invertir el MAP para crear el MORSE_REVERSE_MAP
@@ -41,7 +41,7 @@ public class MorseCode {
     public static String decode(String signal) {
         StringBuilder decoded = new StringBuilder();
         for (String part : signal.split(" ")) {
-            decoded.append(MORSE_REVERSE_MAP.getOrDefault(part, '?'));
+            decoded.append(MORSE_REVERSE_MAP.getOrDefault(part, '?')).append(" ");
         }
         return decoded.toString();
     }

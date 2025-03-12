@@ -22,6 +22,6 @@ public class Main {
         List<SignalComponent> components = Arrays.asList(cable1, relay, cable2);
         TelegraphSystem system = new TelegraphSystem(transmitter, components, receiver);
 
-        system.run("SOS");
+        system.run("HOLA");
     }
 }
