@@ -1,4 +1,4 @@
-package telegraph.utils;
+package main.telegraph.utils;
 
 import java.util.*;
 

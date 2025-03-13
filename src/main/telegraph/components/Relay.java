@@ -1,6 +1,4 @@
-package telegraph.components;
-
-import telegraph.interfaces.SignalComponent;
+package main.telegraph.components;
 
 public class Relay {
     private boolean isActive;

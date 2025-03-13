@@ -1,6 +1,6 @@
-package telegraph.components;
+package main.telegraph.components;
 
-import telegraph.utils.MorseCode;
+import main.telegraph.utils.MorseCode;
 
 public class Transmitter {
     private boolean isOn;

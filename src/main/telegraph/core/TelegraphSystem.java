@@ -1,12 +1,9 @@
-package telegraph.core;
+package main.telegraph.core;
 
-import telegraph.components.Cable;
-import telegraph.components.Receiver;
-import telegraph.components.Relay;
-import telegraph.components.Transmitter;
-import telegraph.interfaces.SignalComponent;
-
-import java.util.List;
+import main.telegraph.components.Cable;
+import main.telegraph.components.Receiver;
+import main.telegraph.components.Relay;
+import main.telegraph.components.Transmitter;
 
 public class TelegraphSystem {
     private Transmitter transmitter;
